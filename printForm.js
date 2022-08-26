@@ -1,5 +1,7 @@
+let id = ""
 const params = new URLSearchParams(window.location.search)
 for (const [key, value] of params) { let id = value; }
+sessionStorage.setItem(key, id)
 
 //Show animation 
 for (let i = 1; i < 4; i++) {
@@ -65,8 +67,8 @@ async function populatePage(data) {
         document.getElementById(`progress${i + 1}`).innerHTML = data.goals[i].progress;
         document.getElementById(`notes${i + 1}`).innerHTML = data.goals[i].notes;
         for (let j = 0; j < data.goals[i].objectives.length; j++) {
-            document.getElementById(`goal${j + 1}-${i + 1}`).innerHTML = data.goals[i].objectives[j];  
-            document.getElementById(`goal${j + 1}-${i + 1}`).style.display = 'inline'
+            document.getElementById(`goals${j + 1}-${i + 1}`).innerHTML = data.goals[i].objectives[j];  
+            document.getElementById(`goals${j + 1}-${i + 1}`).style.display = 'inline'
             if(!data.goals[i].objectives[j]) {j = data.goals[i].objectives.length}
         }
         for (let j = 0; j < data.goals[i].objectives.length; j++) {
@@ -91,7 +93,7 @@ function showPage() {
 }
 
 let printToPDF = document.getElementById('printToPDF')
-printToPDF.addEventListener('click', (e) = {})
+printToPDF.addEventListener('click', (e) => {window.print()})
 
 let exit = document.getElementById('exit') 
 exit.addEventListener('click', (e) => {
